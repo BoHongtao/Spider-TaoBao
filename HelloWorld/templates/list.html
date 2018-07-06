@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1px solid black">
+        <tr>
+            <th>ID</th>
+            <th>图片</th>
+            <th>标题</th>
+            <th>价格</th>
+            <th>交易量</th>
+            <th>店铺名字</th>
+            <th>发货地点</th>
+        </tr>
+        {% for info in list %}
+            <tr>
+                <td>{{ info.id }}</td>
+                <td><image src="http:{{ info.image_url }}" style="width: 120px;height: 120px"></image></td>
+                <td>{{ info.title }}</td>
+                <td>{{ info.price }}</td>
+                <td>{{ info.deal }}</td>
+                <td>{{ info.shop }}</td>
+                <td>{{ info.location }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if list.has_previous %}
+            <a href="?page={{ list.previous_page_number }}">上一页</a>
+        {% endif %}
+        <span class="current">
+            Page {{ list.number }} of {{ list.paginator.num_pages }}.
+        </span>
+        {% if list.has_next %}
+            <a href="?page={{ list.next_page_number }}">下一页</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>
